@@ -1,0 +1,27 @@
+import java.time.LocalDate;
+import java.time.LocalDate;
+import java.util.*;
+
+public class TaskService {
+    private Map<Integer, Task> taskMap = new HashMap<> ();
+    private Collection<Task> removedTask;
+
+    public void add(Task task) {
+        taskMap.put (task.getId (), task);
+    }
+
+    public void remove(int id) {
+        taskMap.remove (id);
+    }
+
+   public Collection<Task> getAllByDate(LocalDate inputDate) {
+       List<Task> resultList = new ArrayList<> ();
+        for (Map.Entry<Integer, Task> integerTaskEntry : taskMap.entrySet ()) {
+            var task = integerTaskEntry.getValue ();
+            if (task.isAvailable (inputDate)) {
+                System.out.println (task);
+            }
+        }
+        return resultList;
+   }
+}
