@@ -12,29 +12,29 @@ public class Task implements Repeatable {
     private LocalDateTime dateTime;
     private static int idGenerator = 0;
 
-    public Task(String title, String description, Type type, LocalDateTime taskDateTime) {
+
+    public Task (String title, String description, Type type, LocalDateTime taskDateTime) {
 
         this.id = idGenerator++;
 
-        if (!title.isEmpty () || !title.isBlank ()){this.title = title;}
-        else {
+        if (!title.isEmpty () || !title.isBlank ()) {
+            this.title = title;
+        } else {
             throw new RuntimeException ("Поле название не было заполнено, попробуейте ввести задачу ещё раз");
         }
-        if (!description.isEmpty () || !description.isBlank ()){this.description = description;}
-
-        if (!(type ==null)){
-            this.type = type;
+        if (!description.isEmpty () || !description.isBlank ()) {
+            this.description = description;
         }
-        else {
+
+        if (!(type == null)) {
+            this.type = type;
+        } else {
             throw new RuntimeException ("Задача может соответствовать только одному из типов Личные задачи или Рабочие задачи, попробуейте ввести задачу ещё раз");
         }
+       this.dateTime = taskDateTime;
 
-        if (!(dateTime ==null)){
-            this.dateTime = taskDateTime;
-        } else {
-            throw new RuntimeException ("Не указана дата исполнения, попробуейте ввести задачу ещё раз");
-        }
     }
+
 
     public void setId(int id) {
         this.id = id;
