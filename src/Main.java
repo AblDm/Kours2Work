@@ -142,7 +142,7 @@ public class Main {
                     taskService.add (new YearlyTask (name, description, taskType, resultDate));
                     break;
                 default:
-                    throw new RuntimeException ("Товарищ! нет такой задачи");
+                    throw new RuntimeException ("Товарищ! нет такой повторяемости задачи");
             }
         } catch (RuntimeException e) {
                 System.out.println (e.getMessage ());
