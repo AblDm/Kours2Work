@@ -89,7 +89,7 @@ public class Main {
 
         private static void addTask(TaskService taskService, Scanner scanner) {
 
-            System.out.print("Введите название задачи: ");
+            System.out.print ("Введите название задачи: ");
             String name = scanner.next ();
             if (name.isBlank ()) {
                 System.out.println ("Введённые вами данные не распознаны");
@@ -107,13 +107,13 @@ public class Main {
             LocalDate taskDate = getDateFromUser (scanner);
 
 
-            LocalTime taskTime =getTimeFromUser (scanner);
+            LocalTime taskTime = getTimeFromUser (scanner);
 
             LocalDateTime resultDate = LocalDateTime.of (taskDate, taskTime);
 
             System.out.println ("Введите тип задачи: Личный (1) Рабочий (2)");
             int type = scanner.nextInt ();
-            Type taskType = type==1 ? Type.PRIVATE : Type.WORK;
+            Type taskType = type == 1 ? Type.PRIVATE : Type.WORK;
 
             System.out.println ("Введите повторяемость задачи: ");
             System.out.println (" 0 - не повторяется ");
@@ -122,10 +122,13 @@ public class Main {
             System.out.println (" 3 - Месячная ");
             System.out.println (" 4 - Годовая ");
             int typeTask = scanner.nextInt ();
-            switch (typeTask){
+            try {
+
+
+            switch (typeTask) {
                 case 0:
                     taskService.add (new Task (name, description, taskType, resultDate));
-                break;
+                    break;
                 case 1:
                     taskService.add (new DailyTask (name, description, taskType, resultDate));
                     break;
@@ -140,6 +143,9 @@ public class Main {
                     break;
                 default:
                     throw new RuntimeException ("Товарищ! нет такой задачи");
+            }
+        } catch (RuntimeException e) {
+                System.out.println (e.getMessage ());
             }
 
         }

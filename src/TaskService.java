@@ -19,7 +19,7 @@ public class TaskService {
         for (Map.Entry<Integer, Task> integerTaskEntry : taskMap.entrySet ()) {
             var task = integerTaskEntry.getValue ();
             if (task.isAvailable (inputDate)) {
-                System.out.println (task);
+                resultList.add (task);
             }
         }
         return resultList;
